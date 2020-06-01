@@ -159,6 +159,8 @@ set_key_handler = CommandHandler('poweron', power_on)
 dispatcher.add_handler(set_key_handler)
 set_url_handler = CommandHandler('url', set_url)
 dispatcher.add_handler(set_url_handler)
+set_url_handler = CommandHandler('curse', curse)
+dispatcher.add_handler(set_url_handler)
 
 updater.start_polling()
 updater.idle()

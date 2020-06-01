@@ -140,6 +140,10 @@ def power_on(update, context):
         content = response['errors'][0]['detail']
     context.bot.send_message(chat_id=update.effective_chat.id, text=content, parse_mode=ParseMode.MARKDOWN)
 
+def curse(update, context):
+    content = base.get_curse()
+    context.bot.send_message(chat_id=update.effective_chat.id, text=content, parse_mode=ParseMode.MARKDOWN)
+
 #Register commands
 list_handler = CommandHandler('list', list_server)
 dispatcher.add_handler(list_handler)

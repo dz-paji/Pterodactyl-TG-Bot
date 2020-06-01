@@ -45,3 +45,6 @@ def post_request(url, api_key):
         return contents_raw.json()
     except json.decoder.JSONDecodeError:
         return 'success'
+
+def get_curse():
+    return requests.get('https://nmsl.shadiao.app/api.php?level=min')

@@ -47,4 +47,5 @@ def post_request(url, api_key):
         return 'success'
 
 def get_curse():
-    return requests.get('https://nmsl.shadiao.app/api.php?level=min')
+    r = requests.get('https://nmsl.shadiao.app/api.php?level=min')
+    return r.text

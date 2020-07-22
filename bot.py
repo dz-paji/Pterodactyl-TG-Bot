@@ -23,15 +23,16 @@ bot_presistent = PicklePersistence(filename='bot_data')
 updater = Updater(token=(config['TELEGRAM']['ACCESS_TOKEN']), persistence=bot_presistent, use_context=True)
 dispatcher = updater.dispatcher
 
+# Default function
 def start(update, context):
     context.user_data['api_key'] = 'default'
     context.user_data['url'] = (config['Pterodactyl']['url'])
     content = '''Welcome aboard! Please specify your API KEY using command /set before getting started.
 It is worth noting that the Panel has a rate limit(60 rps by default).
+You can create an API key from Pterodactyl panel.
+Note that the URL for Pterodactyl Panel need to start with https://
 Looking for Minecraft server hosting solution? Check out [502Network](https://portal.502.network)!'''
     context.bot.send_message(chat_id=update.effective_chat.id, text=content, parse_mode=ParseMode.MARKDOWN)
-
-# Pterodactyl reacts
 
 # Request function
 def get_request(url, api_key):
@@ -58,6 +59,8 @@ def list_server(update, context):
 
     request_raw = get_request(url, api_key)
     server_name = {}
+
+    # Fetch servers
     for i in range(0, len(request_raw)):
         inter_attributes = request_raw[i]
         server_name[inter_attributes['name']] = inter_attributes['identifier']
@@ -108,6 +111,7 @@ def status_request(update, context):
 
     context.bot.send_message(chat_id=update.effective_chat.id, text=content, parse_mode=ParseMode.MARKDOWN)
 
+# Send msg to console
 def console_post(update, context):
     if check_key(context) == 'inavlid':
         context.bot.send_message(chat_id=update.effective_chat.id, text='Please set your API KEY first.', parse_mode=ParseMode.MARKDOWN)
@@ -126,6 +130,7 @@ def console_post(update, context):
         content = 'Command sent successfully.'
     context.bot.send_message(chat_id=update.effective_chat.id, text=content, phase_mod=ParseMode.MARKDOWN)
 
+# power on function.
 def power_on(update, context):
     if check_key(context) == 'inavlid':
         context.bot.send_message(chat_id=update.effective_chat.id, text='Please set your API KEY first.', parse_mode=ParseMode.MARKDOWN)
@@ -140,6 +145,7 @@ def power_on(update, context):
         content = response['errors'][0]['detail']
     context.bot.send_message(chat_id=update.effective_chat.id, text=content, parse_mode=ParseMode.MARKDOWN)
 
+# Just for fun XD
 def curse(update, context):
     content = base.get_curse()
     context.bot.send_message(chat_id=update.effective_chat.id, text=content, parse_mode=ParseMode.MARKDOWN)

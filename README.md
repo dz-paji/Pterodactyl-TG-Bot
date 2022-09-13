@@ -17,7 +17,7 @@ pip install -r requirements.txt
   1. Copy `config.example.ini` to `config.ini`. 
   
   2. Edit `config.ini`, change the access token and url. 
-  3. 
+
 ### Run the program
 
 ``` bash

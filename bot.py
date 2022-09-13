@@ -14,13 +14,13 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.INFO)
 
 # Initial bot by Telegram access token
-bot = telegram.Bot(token=(config['TELEGRAM']['ACCESS_TOKEN']))
+bot = telegram.Bot(token=config['TELEGRAM']['ACCESS_TOKEN'])
 
 # Make the bot presistent
 bot_presistent = PicklePersistence(filename='bot_data')
 
 # Create updater and dispatcher
-updater = Updater(token=(config['TELEGRAM']['ACCESS_TOKEN']), persistence=bot_presistent, use_context=True)
+updater = Updater(token=config['TELEGRAM']['ACCESS_TOKEN'], persistence=bot_presistent, use_context=True)
 dispatcher = updater.dispatcher
 
 # Default function
